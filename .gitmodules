@@ -1,0 +1,21 @@
+[submodule "pathogens/nerdtree"]
+	path = pathogens/nerdtree
+	url = https://github.com/scrooloose/nerdtree
+[submodule "pathogens/syntastic"]
+	path = pathogens/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule "pathogens/tagbar"]
+	path = pathogens/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "pathogens/vim-airline"]
+	path = pathogens/vim-airline
+	url = https://github.com/bling/vim-airline
+[submodule "pathogens/vim-blade"]
+	path = pathogens/vim-blade
+	url = https://github.com/jwalton512/vim-blade
+[submodule "pathogens/vim-material-theme"]
+	path = pathogens/vim-material-theme
+	url = https://github.com/jdkanani/vim-material-theme
+[submodule "pathogens/vim-pathogen"]
+	path = pathogens/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen
