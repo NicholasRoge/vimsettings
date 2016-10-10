@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+function absdirname
+{
+	if (( $# != 1 ))
+	then
+		echo 'Usage: absdirname path'
+		exit 1
+	fi
+
+	pushd "$(dirname "$1")" > /dev/null
+	pwd
+	popd > /dev/null
+}
+
+git submodule update --init --recursive
+ln -s $(absdirname "$0")/vim-{infect,cure} ~/bin

@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "" ]]
+then
+	echo "usage:  $(basename "$0") with"
+	exit 1
+fi
+
+
+PATHOGEN=${1##*/}
+PATHOGEN_DIR=~/.vim/pathogens
+
+
+TMPDIR=$(mktemp -d "XXXXX")
+if ! git clone "https://github.com/$1" "$TMPDIR"
+then
+	rm -r "$TMPDIR"
+	exit 1
+fi
+
+if ! mv "$TMPDIR" "$PATHOGEN_DIR/$PATHOGEN"
+then
+	rm -r "$TMPDIR"
+	exit 1
+fi
+
+pushd "$PATHOGEN_DIR"
+git add -A "$PATHOGEN"
+git commit -m "Infected vim with pathogen:  $PATHOGEN"
+popd
+

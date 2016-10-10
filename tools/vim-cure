@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+if [[ "$1" == "" ]]
+then
+	echo "usage: $(basename "$1") pathogen"
+	exit 1
+fi
+
+
+PATHOGEN="$1"
+PATHOGEN_DIR=~/.vim/pathogens
+
+
+if [ ! -d "$PATHOGEN_DIR/$PATHOGEN" ]
+then
+	echo "Vim is not infected with '$PATHOGEN'."
+	exit 1
+fi
+
+pushd "$PATHOGEN_DIR"
+rm -r
+git rm -r "$PATHOGEN"
+git commit -m "Cured vim of pathogen:  $PATHOGEN"
+popd
