@@ -1,6 +1,6 @@
 let s:ifi_repo_origin = "^git@git\.innovationfirst\.net:.*$"
 
-function s:TrySetFiletype()
+function! s:TrySetFiletype()
 	let path = expand("%")
 	if isdirectory(path)
 		return
