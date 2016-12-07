@@ -1,13 +1,14 @@
 runtime pathogens/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect('pathogens/{}')
+call pathogen#helptags()
 
 " Needed for Airline plugin
 set laststatus=2
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
 
 syntax on
+
 set background=dark
 colorscheme material-theme
 
@@ -31,7 +32,15 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-endif 
+    
+    if exists('$TMUX')
+        " Courtesy of http://vi.stackexchange.com/questions/3379/cursor-shape-under-vim-tmux
+        let &t_EI = "\<Esc>Ptmux;\<Esc>".&t_EI."\<Esc>\\"
+        let &t_SI = "\<Esc>Ptmux;\<Esc>".&t_SI."\<Esc>\\"
+        let &t_SR = "\<Esc>Ptmux;\<Esc>".&t_SR."\<Esc>\\"
+    endif
+endif
+
 
 " Allows undos across vim sessions.
 if has('persistent_undo')
@@ -41,11 +50,15 @@ if has('persistent_undo')
 endif
 
 set directory=~/.vim/swapfiledir
-	
-
-" Keybinds
-nnoremap <silent> <F9> :TagbarToggle<CR>
 
 " Needed 
 filetype plugin on
 filetype indent on
+
+" Enable Mouse Support
+set mouse=a
+
+set backspace=indent,eol,start
+
+let s:runtimepath = fnamemodify(expand("$MYVIMRC"), ":p:h")
+execute "source ".s:runtimepath."/keymap.vim" 
