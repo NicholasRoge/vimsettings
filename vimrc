@@ -1,3 +1,8 @@
+let g:pathogen_disabled = []
+if exists('$BASH_ON_WINDOWS') 
+    call add(g:pathogen_disabled, 'vim-airline')
+endif
+
 runtime pathogens/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect('pathogens/{}')
 call pathogen#helptags()
