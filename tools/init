@@ -13,5 +13,7 @@ function absdirname
 	popd > /dev/null
 }
 
-git submodule update --init --recursive
-ln -s $(absdirname "$0")/vim-{infect,cure} ~/bin
+VIM_DIR="$(dirname $(absdirname "$0"))"
+
+git -C "$VIM_DIR" submodule update --init --recursive
+ln -s "$VIM_DIR/tools/"vim-{infect,cure} ~/bin
